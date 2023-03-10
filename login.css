@@ -1,0 +1,23 @@
+body
+{
+    padding: 0px;
+    margin: 0px;
+}
+
+div
+{
+    height: 100vh;
+    margin: 0%;
+}
+
+.colore
+{
+    float: left;
+    width: 40%;
+    background-color: #1AEAB5; 
+}
+
+.dati
+{
+    width: 60%;
+}
