@@ -4,25 +4,19 @@
     $mysqli = require("conn_db.php");
 
     //prendo il nome dello user che crea la nc per metterlo poi nell'INSERT che farò
-    $creatore = $_SESSION["creatore"];
 
-   /* $queryAux = 'SELECT R.IDAUT
-    FROM RuoloValore as R
-    WHERE R.ruolo = "'.$ruolo.'"';
+    $queryTipo = 'SELECT *
+    FROM Tipo as T';
 
-    $result = $mysqli -> query($queryAux);
+    $result = $mysqli -> query($queryTipo);
 
-    $is_amministratore = false;
-    foreach($result as $v){
+    foreach($result as $v) {
         foreach($v as $key => $value) {
-            if($value === '1')
-            {
-                $is_amministratore = true;
-            }
+            echo "$key $value\n"; 
         }
-    }
+    }     
     
-    session_destroy();*/
+    session_destroy();
 ?>
 
 <!DOCTYPE html>
@@ -37,8 +31,16 @@
 <body>
 
     <form action="invia_nc.php" method="post">
-        <label>TIPO </label>
-        <input type="text" name="tipo"  required>
+        <!--
+        <select name="tipo">
+            <?php foreach($result as $v) {
+                    foreach($v as $key => $value) {
+                        echo "htmlspecialchars(<option value=\"$value\">$value</option>)";
+                    }
+                }      
+            ?>  
+        </select>
+            -->
         <br>
         <label>TITOLO </label>
         <input type="text" name="titolo"  required>
