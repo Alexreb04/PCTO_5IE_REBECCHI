@@ -9,14 +9,14 @@
     FROM Tipo as T';
 
     $result = $mysqli -> query($queryTipo);
-
+    $lista = [];
     foreach($result as $v) {
-        foreach($v as $key => $value) {
-            echo "$key $value\n"; 
+        foreach($v as $key => $values)
+        {
+            array_push($lista, $values);
         }
-    }     
-    
-    session_destroy();
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -31,16 +31,15 @@
 <body>
 
     <form action="invia_nc.php" method="post">
-        <!--
         <select name="tipo">
-            <?php foreach($result as $v) {
-                    foreach($v as $key => $value) {
-                        echo "htmlspecialchars(<option value=\"$value\">$value</option>)";
-                    }
-                }      
+            <?php 
+                for ($i = 1; $i < sizeof($lista); $i+=2) {
+                    $indice = $lista[$i - 1];
+                    echo "htmlspecialchars(<option value=\"$indice\">$lista[$i]</option>)";
+                 }     
             ?>  
         </select>
-            -->
+        
         <br>
         <label>TITOLO </label>
         <input type="text" name="titolo"  required>

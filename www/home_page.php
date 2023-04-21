@@ -21,7 +21,6 @@
         }
     }
     
-    session_destroy();
 ?>
 
 <!DOCTYPE html>

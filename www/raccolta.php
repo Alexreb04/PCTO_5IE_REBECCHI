@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	$mysqli = require("conn_db.php");
 	$user = htmlspecialchars($_GET["username"]);
 	$passwd = htmlspecialchars($_GET["password"]);
@@ -9,8 +10,6 @@
 
 
 	$result = $mysqli -> query($query);
-
-	session_start();
 
 	if($result -> num_rows === 0)
 	{
