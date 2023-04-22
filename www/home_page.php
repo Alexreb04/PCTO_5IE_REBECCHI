@@ -50,7 +50,7 @@
     <?php elseif (!$is_amministratore): ?>
         <div class="container">
             <div class="buttonGrid">
-                <div class="button" onclick="">Button 1</div>
+                <div class="button" onclick=""><a href="./lista_nc.php">LISTA NC</a></div>
                 <div class="button" onclick="">Button 2</div>
                 <div class="button" onclick="">Button 3</div>
             </div>
