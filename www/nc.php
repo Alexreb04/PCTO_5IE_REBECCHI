@@ -1,9 +1,18 @@
 <?php
     session_start();
 
-    $mysqli = require("conn_db.php");
 
-    //prendo il nome dello user che crea la nc per metterlo poi nell'INSERT che farò
+
+    if(isset($_GET["error_status"]) == "success")
+	{
+		echo "<div style=\"background-color:green; color: white\">NC Inserita Correttamente</div>";
+	}
+    else if(isset($_GET["error_status"]) == "error")
+    {
+        echo "<div style=\"background-color:red; color: black\">Errore nell'inserimento della NC</div>";
+    }
+
+    $mysqli = require("conn_db.php");
 
     $queryTipo = 'SELECT *
     FROM Tipo as T';
