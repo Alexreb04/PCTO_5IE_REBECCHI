@@ -23,7 +23,7 @@
 
     $status = $mysqli -> error;
     if(strlen($status) === 0)
-        header("Location: ./nc.php?error_status=success");
+        header("Location: ./apri_nc.php?error_status=success");
     else 
-        header("Location: ./nc.php?error_status=error");
+        header("Location: ./apri_nc.php?error_status=error");
 ?>
