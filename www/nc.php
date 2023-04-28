@@ -1,8 +1,6 @@
 <?php
-    session_start();
-
-
-
+    require("validate_user.php");
+    
     if(isset($_GET["error_status"]) == "success")
 	{
 		echo "<div style=\"background-color:green; color: white\">NC Inserita Correttamente</div>";
