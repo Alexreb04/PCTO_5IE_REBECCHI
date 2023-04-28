@@ -58,41 +58,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LISTA NC</title>
-    <!--<?php if($is_amministratore) : ?>
-        <link rel="stylesheet" href=".css">
-    <?php elseif (!$is_amministratore): ?>
+    <!--<?php if($is_amministratore) : ?>-->
+        <link rel="stylesheet" href="lista_nc.css">
+    <!--<?php elseif (!$is_amministratore): ?>
         <link rel="stylesheet" href=".css">
     <?php endif; ?>-->
 </head>
 <body>
-    <table>        
-            <?php
+    <div class="container">
+        <table>        
+                <?php
 
-                $num_titoli=0;
-                //TITOLI
-                foreach($titoli as $v){
-                    echo "<tr>";
-                    foreach($v as $key => $value) {
-                        echo "<th>".$key."</th>";
-                        $num_titoli++;
+                    $num_titoli=0;
+                    //TITOLI
+                    foreach($titoli as $v){
+                        echo "<tr>";
+                        foreach($v as $key => $value) {
+                            echo "<th>".$key."</th>";
+                            $num_titoli++;
+                        }
+                        echo "</tr>";
                     }
-                    echo "</tr>";
-                }
-            ?>
-            <?php
-                $cursore=0;
-                //RECORD
-                for ($i = 0; $i < sizeof($lista)/$num_titoli; $i++) {
-                    echo "<tr>";
-                    for($j=0; $j < $num_titoli; $j++)
-                    {   
-                        echo "<td>".$lista[$cursore]."</td>";
-                        $cursore++;
-                    }
-                    echo "</tr>";
-                }     
-            ?>
-    </table>
-    
+                ?>
+                <?php
+                    $cursore=0;
+                    //RECORD
+                    for ($i = 0; $i < sizeof($lista)/$num_titoli; $i++) {
+                        echo "<tr>";
+                        for($j=0; $j < $num_titoli; $j++)
+                        {   
+                            echo "<td>".$lista[$cursore]."</td>";
+                            $cursore++;
+                        }
+                        echo "</tr>";
+                    }     
+                ?>
+        </table>
+   </div>
 </body>
 </html>
