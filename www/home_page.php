@@ -40,7 +40,7 @@
     <!-- gestore non conformita -->
     <?php if($is_amministratore) : ?>
         <div class="buttonGrid">
-            <div class="button" onclick="">Button 1</div>
+            <div class="button" onclick=""><a href="./lista_nc.php">LISTA NC</a></div>
             <div class="button" onclick="">Button 2</div>
             <div class="button" onclick="">Button 3</div>
             <div class="button" onclick="">Button 4</div>
@@ -50,12 +50,12 @@
     <?php elseif (!$is_amministratore): ?>
         <div class="container">
             <div class="buttonGrid">
-                <div class="button" onclick="">Button 1</div>
+                <div class="button" onclick=""><a href="./lista_nc.php">LISTA NC</a></div>
                 <div class="button" onclick="">Button 2</div>
                 <div class="button" onclick="">Button 3</div>
             </div>
             <div class="sottoGriglia">
-                <div class="button largo" onclick=""><a href="./nc.php">APRI NC</a></div>
+                <div class="button largo" onclick=""><a href="./apri_nc.php">APRI NC</a></div>
                 <div class="button medio" onclick="">Button 5</div>
             </div>
         </div>
