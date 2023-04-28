@@ -1,6 +1,6 @@
 <?php
-    session_start();
-
+    require("validate_user.php");
+    
     $mysqli = require("conn_db.php");
 
     $ruolo = $_SESSION["ruolo"];
