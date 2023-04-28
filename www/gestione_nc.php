@@ -71,16 +71,15 @@
                     }
                 }
 
-                echo "<form action=\"./update_gestore.php\"><select name=\"resp\">";
+                echo "<form action=\"./update_gestore.php?NC={$id_nc}&\"><select name=\"resp\">";
 
                 for($i=0; $i < sizeof($lista); $i=$i+2)
                 {
                     echo "<option value='{$lista[$i]}'>{$lista[$i]} - {$lista[$i+1]}</option>";
                 }
                 
+                echo "<input type=\"submit\" value=\"smista\">";
                 echo "</select></form>";
-
-                
                     
                 
             }
@@ -92,6 +91,6 @@
 
         ?>
 
-    <input type="submit" value="smista">
+    
 </body>
 </html>
