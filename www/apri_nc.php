@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    require("validate_user.php");
 
     if(isset($_GET["error_status"]) == "success")
 	{

@@ -1,9 +1,15 @@
 <?php
+	session_start();
+	session_regenerate_id();
+	if(isset($_SESSION['username']))
+	{
+		header("Location: home_page.php");
+	}
+
 	if(isset($_GET["error"]))
 	{
 		echo "<div style=\"background-color:red; color: black\">Errore nel login</div>";
 	}
-
 ?>
 
 <!doctype html>
