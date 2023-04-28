@@ -23,12 +23,12 @@
 
     if($is_amministratore)
     {
-        $queryLista = 'SELECT titolo,nome AS tipo,dataInizio,StatoGenerale,StatoReparto FROM NC JOIN Tipo ON(NC.tipo=Tipo.idt)';
+        $queryLista = 'SELECT IDNC AS COD_NC,titolo,nome AS tipo,dataInizio,StatoGenerale,StatoReparto FROM NC JOIN Tipo ON(NC.tipo=Tipo.idt)';
     }
     else
     {
         $user_corrente = htmlspecialchars($_SESSION["username"]);
-        $queryLista = "SELECT titolo,nome AS tipo,dataInizio,StatoReparto AS Stato FROM NC JOIN Tipo ON(NC.tipo=Tipo.idt) WHERE risolutore = '{$user_corrente}'";
+        $queryLista = "SELECT IDNC AS COD_NC,titolo,nome AS tipo,dataInizio,StatoReparto AS Stato FROM NC JOIN Tipo ON(NC.tipo=Tipo.idt) WHERE risolutore = '{$user_corrente}'";
     }
    
     $queryTitoli = $queryLista . 'LIMIT 1';
@@ -65,34 +65,38 @@
     <?php endif; ?>-->
 </head>
 <body>
-    <table>        
-            <?php
+           
+           <?php
 
                 $num_titoli=0;
                 //TITOLI
                 foreach($titoli as $v){
-                    echo "<tr>";
                     foreach($v as $key => $value) {
-                        echo "<th>".$key."</th>";
                         $num_titoli++;
                     }
-                    echo "</tr>";
                 }
             ?>
+        <ul>
             <?php
                 $cursore=0;
+                $stringa = "";
                 //RECORD
                 for ($i = 0; $i < sizeof($lista)/$num_titoli; $i++) {
-                    echo "<tr>";
+                    $stringa = "<li><a href=\"./gestione_nc.php?NC=";
                     for($j=0; $j < $num_titoli; $j++)
                     {   
-                        echo "<td>".$lista[$cursore]."</td>";
+                        if($j == 0)
+                        {
+                            $stringa .= $lista[$cursore] . "\">";
+                        }
+                        $stringa .= $lista[$cursore] . " ";
                         $cursore++;
                     }
-                    echo "</tr>";
+                    $stringa .= "</a></li>";
+                    echo $stringa;
                 }     
             ?>
-    </table>
+        </ul>
     
 </body>
 </html>
