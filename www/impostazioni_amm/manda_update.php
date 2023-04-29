@@ -9,5 +9,10 @@
     $resultUtente = $mysqli -> query($queryUtente);
 
     echo $queryUtente;
-    var_dump($resultUtente);
+    
+    $status = $mysqli -> error;
+    if(strlen($status) === 0)
+        header("Location: ./cambia_utente.php?error_status=success");
+    else 
+        header("Location: ./cambia_utente.php?error_status=error");
 ?>

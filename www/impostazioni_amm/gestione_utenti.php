@@ -14,7 +14,7 @@
             $stringa .= "<a href=\"cambia_utente.php?username={$value}\"><li>$value</li></a>";
 		}
 	}
-
+    $stringa .= "<a href=\"aggiungi_utente.php\"><li>AGGIUNGI UTENTE</li></a>";
     $stringa .= "</ul>";
 
     echo $stringa;

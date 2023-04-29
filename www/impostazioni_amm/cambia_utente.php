@@ -1,3 +1,14 @@
+<?php
+    if(isset($_GET["error_status"]) == "success")
+	{
+		echo "<div style=\"background-color:green; color: white\">Utente modificato correttamente</div>";
+	}
+    else if(isset($_GET["error_status"]) == "error")
+    {
+        echo "<div style=\"background-color:red; color: black\">Errore nella modifica dell'utente</div>";
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +20,7 @@
 </head>
 <body>
 <?php
+
     require("../validate_user.php");
     $mysqli = require("../conn_db.php");
 
@@ -18,10 +30,37 @@
     FROM Users
     WHERE Users.username=\"{$username}\"";
 
+    $queryRuolo = "SELECT R.nome
+    FROM Ruolo R";
+
+    $queryReparto = "SELECT Rep.nome
+    FROM Reparto Rep";
+
     $resultUtente = $mysqli -> query($queryUtente);
+    $resRuolo = $mysqli -> query($queryRuolo);
+    $resReparto = $mysqli -> query($queryReparto);
+
+
     $passwordVecchia = "";
     $stringa = "<form action=\"#\">";
     $stringa .= "<table class=\"table\"><thead><tr>";
+    
+    $resultRuolo = [];
+    $resultReparto = [];
+
+    foreach ($resRuolo as $v) {
+        foreach($v as $key => $value) {
+            array_push($resultRuolo, $value);
+        }
+    }
+
+    foreach ($resReparto as $v) {
+        foreach($v as $key => $value) {
+            array_push($resultReparto, $value);
+        }
+    }
+
+
     foreach($resultUtente as $v){
         foreach($v as $key => $value) {
             $stringa .= "<th scope=\"col\">$key</th>"; 
@@ -31,11 +70,34 @@
 
         foreach($v as $key => $value) {
             if($key == "passwd") {
-                $stringa .= "<td><input type=\"text\" id=\"$key\" name=\"$key\"></td>";
+                $stringa .= "<td><input type=\"password\" id=\"$key\" name=\"$key\"></td>";
                 $passwordVecchia = $value;
             }
-            else
+            else if($key == "ruolo"){
+                
+                $stringa .= "<td><select name=\"ruolo\" id=\"ruolo\">";
+                foreach($resultRuolo as $ruolo) {
+                    if($ruolo == $value)
+                        $stringa .=  "<option value=\"$ruolo\" selected>$ruolo</option>";
+                    else 
+                        $stringa .=  "<option value=\"$ruolo\">$ruolo</option>";
+                }
+                $stringa .= "</select></td>";
+                
+            }
+            else if($key == "reparto"){
+                $stringa .= "<td><select name=\"reparto\" id=\"reparto\">";
+                foreach($resultReparto as $reparto) {
+                    if($reparto == $value)
+                        $stringa .=  "<option value=\"$reparto\" selected>$reparto</option>";
+                    else
+                        $stringa .=  "<option value=\"$reparto\">$reparto</option>";
+                }
+                $stringa .= "</select></td>";
+            }
+            else {
                 $stringa .= "<td><input type=\"text\" id=\"$key\" name=\"$key\" value=$value></td>";
+            }
         }
 
         $stringa .= "</tr></tbody></table>";
@@ -44,7 +106,6 @@
     $stringa .= "<button id=\"submit\" type=\"button\" class=\"btn btn-primary\" data-toggle=\"button\" aria-pressed=\"false\" autocomplete=\"off\">Update</button></form>";
     echo $stringa;
 ?>
-</body>
 
 <script>
 		document.getElementById("submit").addEventListener("click", postRequest);
@@ -65,18 +126,13 @@
 			}
 			
 			digestMessage(text).then((digestHex) => {
-                let passwordV = <?php echo $passwordVecchia; ?>;
-                if (text === )
-                {
-                    digestHex = passwordV
-                }
-
+                let passwordV = "<?php echo $passwordVecchia; ?>";
 				let username = document.getElementById("username").value;
                 let ruolo = document.getElementById("ruolo").value;
                 let reparto = document.getElementById("reparto").value;
-				window.location.replace(`./manda_update.php?username=${username}&passwd=${digestHex}&ruolo=${ruolo}&reparto=${reparto}&usernameDaModificare=<?php echo $username; ?>`);
+				window.location.replace(`./manda_update.php?username=${username}&passwd=${text === "" ? passwordV : digestHex}&ruolo=${ruolo}&reparto=${reparto}&usernameDaModificare=<?php echo $username; ?>`);
 			})
 	  }
 </script>
-
+</body>
 </html>
