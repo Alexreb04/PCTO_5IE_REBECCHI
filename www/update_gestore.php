@@ -37,8 +37,13 @@
     {
         $update = "UPDATE NC SET risolutore='{$_POST['dipend']}' WHERE IDNC={$_GET['NC']}";   
     }
-    
-    $up = $mysqli -> query($update);
+    else
+    {
+        $update = "UPDATE NC SET statoGenerale=3, statoReparto=3, azioneCorrettiva=\"{$_POST['azioneCorrettiva']}\" WHERE IDNC={$_GET['NC']}";
+    }
 
-    header("Location: ./lista_nc.php");
+    $up = $mysqli -> query($update);
+    var_dump($up);
+
+    //header("Location: ./lista_nc.php");
 ?>

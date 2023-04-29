@@ -112,10 +112,15 @@
                 echo "<input type=\"submit\" value=\"smista\">";
                 echo "</select></form>";
             }
-            /*else
+            else
             {
+                echo "<form action=\"./update_gestore.php?NC='{$id_nc}'\" method=\"post\">";
 
-            }*/
+                echo "<input type=\"text\" name=\"azioneCorrettiva\" maxlength=255>";
+                
+                echo "<input type=\"submit\" value=\"chiudi\">";
+                echo "</form>";
+            }
             //DA FINIRE
 
         ?>
