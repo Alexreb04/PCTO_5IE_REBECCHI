@@ -44,7 +44,7 @@
             <div class="button" onclick="">Button 2</div>
             <div class="button" onclick="">Button 3</div>
             <div class="button" onclick="">Button 4</div>
-            <div class="button" onclick="">Button 5</div>
+            <div class="button" onclick=""><a href="./impostazioni_amm/index.php">Impostazioni Amministratore</a></div>
             <div class="button" onclick="">Button 6</div>
         </div>
     <?php elseif (!$is_amministratore): ?>
