@@ -43,7 +43,6 @@
     }
 
     $up = $mysqli -> query($update);
-    var_dump($up);
 
-    //header("Location: ./lista_nc.php");
+    header("Location: ./lista_nc.php");
 ?>
