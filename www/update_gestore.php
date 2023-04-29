@@ -1,4 +1,3 @@
-//L'UPDATE VARIA IN BASE AL RUOLO
 
 <?php 
     session_start();
@@ -23,5 +22,9 @@
         }
     }
 
-    print_r($_GET);
+    $update = "UPDATE NC SET risolutore='{$_POST['resp']}' WHERE IDNC={$_GET['NC']}";
+    echo $update;
+    $up = $mysqli -> query($update);
+
+    header("Location: ./lista_nc.php");
 ?>

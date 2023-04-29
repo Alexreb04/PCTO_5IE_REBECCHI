@@ -71,7 +71,7 @@
                     }
                 }
 
-                echo "<form action=\"./update_gestore.php?NC={$id_nc}&\"><select name=\"resp\">";
+                echo "<form action=\"./update_gestore.php?NC='{$id_nc}'\" method=\"post\"><select name=\"resp\">";
 
                 for($i=0; $i < sizeof($lista); $i=$i+2)
                 {
@@ -83,7 +83,7 @@
                     
                 
             }
-            /*else if()
+            else if()
             {}
             else
             {}*/
