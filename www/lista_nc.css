@@ -1,9 +1,18 @@
-.container {
-	max-width: 1000px;
-	margin-right:auto;
-	margin-left:auto;
-	display:flex;
-	justify-content:center;
-	align-items:center;
-	min-height:100vh;
+
+a{
+	text-decoration: none;
+	
+}
+
+li {
+	width: 50%;
+	border: 1px solid black;
+	text-align: center;
+	padding: 5px;
+}
+
+ul{
+	position: relative;
+	list-style-type: none;
+	left: 22%;
 }
