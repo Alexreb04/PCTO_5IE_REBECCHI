@@ -121,7 +121,6 @@
                 echo "<input type=\"submit\" value=\"chiudi\">";
                 echo "</form>";
             }
-            //DA FINIRE
 
         ?>
 
