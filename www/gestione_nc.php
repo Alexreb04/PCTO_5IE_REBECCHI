@@ -12,11 +12,17 @@
     $result = $mysqli -> query($queryAux);
 
     $is_amministratore = false;
+    $is_responsabile = false;
     foreach($result as $v){
         foreach($v as $key => $value) {
             if($value === '1')
             {
                 $is_amministratore = true;
+            }
+
+            if($value === '7')
+            {
+                $is_responsabile = true;
             }
         }
     }
@@ -83,10 +89,33 @@
                     
                 
             }
-            else if()
-            {}
-            else
-            {}*/
+            else if($is_responsabile)
+            {
+                $queryDip= "SELECT username,reparto FROM Users WHERE ruolo='dipendente' AND reparto='{$_SESSION["reparto"]}'";
+                $dipend = $mysqli -> query($queryDip);
+
+                $lista = [];
+                foreach($dipend as $v) {
+                    foreach($v as $key => $values)
+                    {
+                        array_push($lista, $values);
+                    }
+                }
+
+                echo "<form action=\"./update_gestore.php?NC='{$id_nc}'\" method=\"post\"><select name=\"dipend\">";
+
+                for($i=0; $i < sizeof($lista); $i=$i+2)
+                {
+                    echo "<option value='{$lista[$i]}'>{$lista[$i]} - {$lista[$i+1]}</option>";
+                }
+                
+                echo "<input type=\"submit\" value=\"smista\">";
+                echo "</select></form>";
+            }
+            /*else
+            {
+
+            }*/
             //DA FINIRE
 
         ?>

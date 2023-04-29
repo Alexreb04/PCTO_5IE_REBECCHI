@@ -81,20 +81,28 @@
                 $cursore=0;
                 $stringa = "";
                 //RECORD
-                for ($i = 0; $i < sizeof($lista)/$num_titoli; $i++) {
-                    $stringa = "<li><a href=\"./gestione_nc.php?NC=";
-                    for($j=0; $j < $num_titoli; $j++)
-                    {   
-                        if($j == 0)
-                        {
-                            $stringa .= $lista[$cursore] . "\">";
+                if($num_titoli==0)
+                {
+                    echo "Non hai NC da visualizzare";
+                }
+                else
+                {
+                    for ($i = 0; $i < sizeof($lista)/$num_titoli; $i++) {
+                        $stringa = "<li><a href=\"./gestione_nc.php?NC=";
+                        for($j=0; $j < $num_titoli; $j++)
+                        {   
+                            if($j == 0)
+                            {
+                                $stringa .= $lista[$cursore] . "\">";
+                            }
+                            $stringa .= $lista[$cursore] . " ";
+                            $cursore++;
                         }
-                        $stringa .= $lista[$cursore] . " ";
-                        $cursore++;
-                    }
-                    $stringa .= "</a></li>";
-                    echo $stringa;
-                }     
+                        $stringa .= "</a></li>";
+                        echo $stringa;
+                    }  
+                }
+                   
             ?>
         </ul>
     
