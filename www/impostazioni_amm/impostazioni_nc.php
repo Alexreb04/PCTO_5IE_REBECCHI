@@ -1,3 +1,11 @@
+<?php 
+    if($_GET["error"] == "ok"){
+        echo "<div style=\"background-color:green; color: white\">Successo</div>";
+    }
+    else if($_GET["error"] == "error") {
+        echo "<div style=\"background-color:red; color: black\">Errore generico</div>";
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,13 +36,23 @@
             foreach($v as $key => $value) {
                 $stringa .= "<th scope=\"col\">$key</th>"; 
             }
+            $stringa .= "<th scope=\"col\">Elimina</th>";
             $alreadyInside = true;
         }
-
         $stringa .= "</tr></thead><tbody><tr>";
 
         foreach($v as $key => $value) {
-            $stringa .= "<td><input type=\"text\" name=\"update[$key][]\" value=\"$value\"></td>";
+            if($key == "idt") {
+                $stringa .= "<td><input type=\"text\" name=\"update[$key][]\" value=\"$value\" readonly></td>";
+            }
+            else {
+                $stringa .= "<td><input type=\"text\" name=\"update[$key][]\" value=\"$value\"></td>";
+            }
+        }
+        foreach($v as $key => $value) {
+            if($key == "idt") {
+                $stringa .= "<td><input type=\"checkbox\" name=\"update[checkbox][]\" value=\"$value\"></td>";
+            }
         }
     }
 
@@ -45,6 +63,7 @@
     $stringa .= "</tr></tbody></table>";
     $stringa .= "<button id=\"submit\" type=\"submit\" class=\"btn btn-primary\" data-toggle=\"button\" aria-pressed=\"false\" autocomplete=\"off\">Update</button></form>";
 
+    $stringa .=  "<a href=\"index.php\">Vai indietro</a>";
     echo $stringa;
 ?>
 

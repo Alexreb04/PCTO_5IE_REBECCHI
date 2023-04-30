@@ -7,8 +7,6 @@
     WHERE username='{$_GET['usernameDaModificare']}' ";
 
     $resultUtente = $mysqli -> query($queryUtente);
-
-    echo $queryUtente;
     
     $status = $mysqli -> error;
     if(strlen($status) === 0)

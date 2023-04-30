@@ -15,6 +15,8 @@
     <div class="buttonGrid">
             <div class="button" onclick=""><a href="./gestione_utenti.php">Gestione Utenti</a></div>
             <div class="button" onclick=""><a href="./impostazioni_nc.php">Impostazioni NC</a></div>
-        </div>
+    </div>
+
+    <a href="../index.php">Vai indietro</a>
 </body>
 </html>

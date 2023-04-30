@@ -17,5 +17,6 @@
     $stringa .= "<a href=\"aggiungi_utente.php\"><li>AGGIUNGI UTENTE</li></a>";
     $stringa .= "</ul>";
 
+    $stringa .=  "<a href=\"index.php\">Vai indietro</a>";
     echo $stringa;
 ?>
