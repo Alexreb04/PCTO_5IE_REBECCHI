@@ -12,11 +12,17 @@
     $result = $mysqli -> query($queryAux);
 
     $is_amministratore = false;
+    $is_responsabile = false;
     foreach($result as $v){
         foreach($v as $key => $value) {
             if($value === '1')
             {
                 $is_amministratore = true;
+            }
+
+            if($value === '7')
+            {
+                $is_responsabile = true;
             }
         }
     }
@@ -55,7 +61,11 @@
                 <div class="button" onclick="">Button 3</div>
             </div>
             <div class="sottoGriglia">
-                <div class="button largo" onclick=""><a href="./apri_nc.php">APRI NC</a></div>
+                <?php if ($is_responsabile): ?>
+                    <div class="button largo" onclick="">Button 5</div>
+                <?php else: ?>
+                    <div class="button largo" onclick=""><a href="./apri_nc.php">APRI NC</a></div>    
+                <?php endif; ?>
                 <div class="button medio" onclick="">Button 5</div>
             </div>
         </div>

@@ -30,7 +30,7 @@
 
     if($is_amministratore)
     {
-        $update = "UPDATE NC SET risolutore='{$_POST['resp']}' WHERE IDNC={$_GET['NC']}";
+        $update = "UPDATE NC SET risolutore='{$_POST['resp']}',statoGenerale=2 WHERE IDNC={$_GET['NC']}";
     
     }
     else if($is_responsabile)

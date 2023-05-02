@@ -23,18 +23,19 @@
 
     if($is_amministratore)
     {
-        $queryLista = 'SELECT IDNC AS COD_NC,titolo,nome AS tipo,dataInizio,StatoGenerale,StatoReparto FROM NC JOIN Tipo ON(NC.tipo=Tipo.idt)';
+        $queryLista = 'SELECT IDNC AS COD_NC,titolo,Tipo.nome AS tipo,dataInizio,Stato.nome AS StatoGenerale,Stato.nome AS StatoReparto FROM NC JOIN Tipo ON (NC.tipo=Tipo.idt) JOIN Stato ON (Stato.idst=NC.statoGenerale) AND (Stato.idst=NC.statoReparto)';
     }
     else
     {
         $user_corrente = htmlspecialchars($_SESSION["username"]);
-        $queryLista = "SELECT IDNC AS COD_NC,titolo,nome AS tipo,dataInizio,StatoReparto AS Stato FROM NC JOIN Tipo ON(NC.tipo=Tipo.idt) WHERE risolutore = '{$user_corrente}' AND StatoGenerale <> 3";
+        $queryLista = "SELECT IDNC AS COD_NC,titolo,Tipo.nome AS tipo,dataInizio,Stato.nome AS StatoReparto FROM NC JOIN Tipo ON(NC.tipo=Tipo.idt) JOIN Stato ON (Stato.idst=NC.statoReparto) WHERE risolutore = '{$user_corrente}'";
     }
    
     $queryTitoli = $queryLista . 'LIMIT 1';
     $titoli = $mysqli -> query($queryTitoli);
 
     $nc = $mysqli -> query($queryLista);
+   
 
     $lista = [];
     foreach($nc as $v) {
@@ -79,7 +80,7 @@
                     $stringa = "";
                     $link = "";
                     //RECORD
-                    if(!($num_titoli==0))
+                    if($num_titoli!=0)
                     {
                         
                         for ($i = 0; $i < sizeof($lista)/$num_titoli; $i++) {
@@ -102,19 +103,6 @@
                     else{
                         echo "Non hai NC da visualizzare";
                     }    
-
-                    /*$stringa = "<td><a href=\"./gestione_nc.php?NC=";
-                            for($j=0; $j < $num_titoli; $j++)
-                            {   
-                                if($j == 0)
-                                {
-                                    $stringa .= $lista[$cursore] . "\">";
-                                }
-                                $stringa .= $lista[$cursore] . " ";
-                                $cursore++;
-                            }
-                            $stringa .= "</a></td>";
-                            echo $stringa;*/
                 ?>
         </table>
 
