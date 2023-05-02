@@ -1,18 +1,24 @@
 
 a{
 	text-decoration: none;
-	
+	color: black;
 }
 
-li {
-	width: 50%;
-	border: 1px solid black;
+td a { 
+	display: block; 
+	padding: 16px 0px; 
 	text-align: center;
-	padding: 5px;
+ }
+
+th{
+	border: 1px solid black;
 }
 
-ul{
-	position: relative;
-	list-style-type: none;
-	left: 22%;
+tr{
+	border: 1px solid black;
 }
+
+table{
+	width: 100%;
+	border-collapse: collapse;
+ }

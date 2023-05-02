@@ -28,7 +28,7 @@
     else
     {
         $user_corrente = htmlspecialchars($_SESSION["username"]);
-        $queryLista = "SELECT IDNC AS COD_NC,titolo,nome AS tipo,dataInizio,StatoReparto AS Stato FROM NC JOIN Tipo ON(NC.tipo=Tipo.idt) WHERE risolutore = '{$user_corrente}'";
+        $queryLista = "SELECT IDNC AS COD_NC,titolo,nome AS tipo,dataInizio,StatoReparto AS Stato FROM NC JOIN Tipo ON(NC.tipo=Tipo.idt) WHERE risolutore = '{$user_corrente}' AND StatoGenerale <> 3";
     }
    
     $queryTitoli = $queryLista . 'LIMIT 1';
@@ -48,63 +48,76 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <style>
-    table, th, td {
-    border:1px solid black;
-    }
-    </style>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LISTA NC</title>
-    <!--<?php if($is_amministratore) : ?>-->
-        <link rel="stylesheet" href="lista_nc.css">
-    <!--<?php elseif (!$is_amministratore): ?>
-        <link rel="stylesheet" href=".css">
-    <?php endif; ?>-->
+    <link rel="stylesheet" href="lista_nc.css">
 </head>
 <body>
-           
-           <?php
-
-                $num_titoli=0;
-                //TITOLI
-                foreach($titoli as $v){
-                    foreach($v as $key => $value) {
-                        $num_titoli++;
-                    }
-                }
-            ?>
-        <ul>
+        <table cellspacing="0" cellpadding="0">
             <?php
-                $cursore=0;
-                $stringa = "";
-                //RECORD
-                if($num_titoli==0)
-                {
-                    echo "Non hai NC da visualizzare";
-                }
-                else
-                {
-                    for ($i = 0; $i < sizeof($lista)/$num_titoli; $i++) {
-                        $stringa = "<li><a href=\"./gestione_nc.php?NC=";
-                        for($j=0; $j < $num_titoli; $j++)
-                        {   
-                            if($j == 0)
-                            {
-                                $stringa .= $lista[$cursore] . "\">";
+
+                    $num_titoli=0;
+                    //TITOLI
+                    if($titoli!=false)
+                    {
+                        foreach($titoli as $v){
+                            echo "<tr>";
+                            foreach($v as $key => $value) {
+                                echo "<th>".$key."</th>";
+                                $num_titoli++;
                             }
-                            $stringa .= $lista[$cursore] . " ";
-                            $cursore++;
+                            echo "</tr>";
                         }
-                        $stringa .= "</a></li>";
-                        echo $stringa;
-                    }  
-                }
-                   
-            ?>
-        </ul>
-    
+                    }
+                    
+                ?>
+                <?php
+                    $cursore=0;
+                    $stringa = "";
+                    $link = "";
+                    //RECORD
+                    if(!($num_titoli==0))
+                    {
+                        
+                        for ($i = 0; $i < sizeof($lista)/$num_titoli; $i++) {
+                            $stringa = "<tr>";
+                            for($j=0; $j < $num_titoli; $j++)
+                            {   
+                                if($j == 0)
+                                {
+                                    $link = "<a href=\"./gestione_nc.php?NC=" . $lista[$cursore] . "\">";
+                                }
+
+                                $stringa .= "<td>". $link . $lista[$cursore] . "</td>";
+                                $cursore++;
+                                
+                            }
+                            $stringa .= "</tr></a>";
+                            echo $stringa;
+                        }  
+                    }
+                    else{
+                        echo "Non hai NC da visualizzare";
+                    }    
+
+                    /*$stringa = "<td><a href=\"./gestione_nc.php?NC=";
+                            for($j=0; $j < $num_titoli; $j++)
+                            {   
+                                if($j == 0)
+                                {
+                                    $stringa .= $lista[$cursore] . "\">";
+                                }
+                                $stringa .= $lista[$cursore] . " ";
+                                $cursore++;
+                            }
+                            $stringa .= "</a></td>";
+                            echo $stringa;*/
+                ?>
+        </table>
+
+        
 </body>
 </html>
