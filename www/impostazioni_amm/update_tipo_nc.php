@@ -34,10 +34,10 @@
             }
         }
 
-        header("Location: ./impostazioni_nc.php?error=ok");
+        header("Location: ./impostazioni_nc.php?error=Successo");
 
     } catch (Exception $e) {
-        header("Location: ./impostazioni_nc.php?error=error");
+        header("Location: ./impostazioni_nc.php?error=Errore_Generico");
     }
 
 ?>

@@ -1,9 +1,11 @@
 <?php 
-    if($_GET["error"] == "ok"){
-        echo "<div style=\"background-color:green; color: white\">Successo</div>";
-    }
-    else if($_GET["error"] == "error") {
-        echo "<div style=\"background-color:red; color: black\">Errore generico</div>";
+    if(isset($_GET["error"])) {
+        if($_GET["error"] == "Successo") {
+            echo "<div style=\"background-color:green; color: white\">Successo</div>";
+        }
+        else {
+            echo "<div style=\"background-color:red; color: white\">Errore Generico</div>";
+        }
     }
 ?>
 <!DOCTYPE html>
