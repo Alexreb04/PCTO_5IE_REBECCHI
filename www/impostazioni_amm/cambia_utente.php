@@ -1,11 +1,10 @@
 <?php
-    if(isset($_GET["error_status"]) == "success")
-	{
-		echo "<div style=\"background-color:green; color: white\">Utente modificato correttamente</div>";
-	}
-    else if(isset($_GET["error_status"]) == "error")
-    {
-        echo "<div style=\"background-color:red; color: black\">Errore nella modifica dell'utente</div>";
+    if(isset($_GET["error_status"])) {
+        if($_GET["error_status"] == "success") {
+		    echo "<div style=\"background-color:green; color: white\">Utente modificato correttamente</div>";
+        } else {
+            echo "<div style=\"background-color:red; color: black\">Errore nella modifica dell'utente</div>";
+        }
     }
 ?>
 
